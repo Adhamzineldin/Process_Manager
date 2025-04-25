@@ -1,0 +1,66 @@
+.TH PROCESS_MANAGER_CLI 1 "April 2025" "Version 1.0" "User Commands"
+.SH NAME
+process_manager_cli \- command-line system process monitoring and management utility
+.SH SYNOPSIS
+.B process_manager_cli
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B process_manager_cli
+provides a menu-driven command-line interface for monitoring and managing system processes.
+.SH MENU OPTIONS
+.TP
+.B 1. List all processes
+Displays a table with PID, user, name, description, and state of all processes.
+.TP
+.B 2. List processes grouped by user
+Shows processes organized by user accounts.
+.TP
+.B 3. Show all process IDs
+Lists all active process IDs.
+.TP
+.B 4. Run a new process
+Prompts for a command to execute.
+.TP
+.B 5. Stop/signal a process
+Allows sending common signals (SIGTERM, SIGKILL, SIGSTOP, SIGCONT) to a process.
+.TP
+.B 6. Send custom signal to a process
+Enables sending any signal by its number to a specific process.
+.TP
+.B 0. Exit
+Terminates the application.
+.SH PROCESS STATES
+Process states shown in the output:
+.TP
+.B R
+Running or runnable (on run queue)
+.TP
+.B S
+Interruptible sleep (waiting for an event)
+.TP
+.B D
+Uninterruptible sleep (usually IO)
+.TP
+.B Z
+Defunct or "zombie" process
+.TP
+.B T
+Stopped, either by a job control signal or because it's being traced
+.SH FILES
+The application reads process information from the \fI/proc\fR filesystem.
+.SH EXAMPLES
+.PP
+To start the command-line version:
+.PP
+.B process_manager_cli
+.SH NOTES
+Some operations may require root privileges, especially when managing processes owned by other users.
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Your Name <your.email@example.com>
+.SH SEE ALSO
+.BR process_manager_gui (1),
+.BR ps (1),
+.BR top (1),
+.BR kill (1)

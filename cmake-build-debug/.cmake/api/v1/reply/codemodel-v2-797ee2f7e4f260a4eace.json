@@ -6,7 +6,8 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-ab6540d0c0c4a6d30d64.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -15,7 +16,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,12 +33,28 @@
 					"name" : "process_manager",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "man_cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-man_cli-Debug-7ea8cb1dcdf963a15b35.json",
+					"name" : "man_cli",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "man_gui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-man_gui-Debug-246c0a19535997c82a37.json",
+					"name" : "man_gui",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "procmanager-gui::@6890427a1f51a3e7e1df",

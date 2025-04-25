@@ -1,3 +1,9 @@
 /mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/procmanager-gui.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/man_gui.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/man_cli.dir
 /mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/edit_cache.dir
 /mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/list_install_components.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/install.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/install/local.dir
+/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug/CMakeFiles/install/strip.dir

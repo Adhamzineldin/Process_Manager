@@ -43,4 +43,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/procmanager-gui.dir/DependInfo.cmake"
+  "CMakeFiles/man_gui.dir/DependInfo.cmake"
+  "CMakeFiles/man_cli.dir/DependInfo.cmake"
   )
