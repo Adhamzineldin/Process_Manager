@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S "/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager" -B "/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug
