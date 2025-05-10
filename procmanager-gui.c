@@ -4,10 +4,10 @@
 #include <unistd.h>
 #include <signal.h>
 #include <dirent.h>
-#include <pwd.h>
+#include <pwd.h> // LINUX ONLY !!!!!!!!!!!!!
 #include <sys/types.h>
 #include <ctype.h>
-#include <gtk/gtk.h>
+#include <gtk/gtk.h> // LINUX GUI LINUX ONLYYYY!!!!!!!!!!!!!!!!!
 
 // Structure to hold process information
 typedef struct {
@@ -15,7 +15,10 @@ typedef struct {
     char user[256];
     char name[256];
     char state;
+    char state_desc[64];  // Added state description field
 } ProcessInfo;
+
+
 
 // Global GTK widgets
 GtkWidget *window;
@@ -67,17 +70,28 @@ void get_process_info(int pid, ProcessInfo *proc) {
         strcpy(proc->name, "Unknown");
         strcpy(proc->user, "Unknown");
         proc->state = '?';
+        strcpy(proc->state_desc, "Unknown");
 
         while (fgets(buffer, sizeof(buffer), status_file)) {
             // Get process name
             if (strncmp(buffer, "Name:", 5) == 0) {
                 sscanf(buffer, "Name:\t%255s", proc->name);
             }
-                // Get process state
+            // Get process state
             else if (strncmp(buffer, "State:", 6) == 0) {
-                sscanf(buffer, "State:\t%c", &proc->state);
+                char state_char;
+                char state_desc[64] = {0};
+                if (sscanf(buffer, "State:\t%c (%63[^)])", &state_char, state_desc) == 2) {
+                    proc->state = state_char;
+                    strncpy(proc->state_desc, state_desc, sizeof(proc->state_desc) - 1);
+                    proc->state_desc[sizeof(proc->state_desc) - 1] = '\0';
+                } else {
+                    // If we can't parse the description, just get the state character
+                    sscanf(buffer, "State:\t%c", &proc->state);
+                    strcpy(proc->state_desc, "Unknown");
+                }
             }
-                // Get process uid
+            // Get process uid
             else if (strncmp(buffer, "Uid:", 4) == 0) {
                 int uid;
                 sscanf(buffer, "Uid:\t%d", &uid);
@@ -107,16 +121,16 @@ void list_all_processes_callback(GtkWidget *widget, gpointer data) {
         return;
     }
 
-    append_text("PID     USER            NAME                STATE\n");
-    append_text("------------------------------------------------\n");
+    append_text("PID     USER            NAME                STATE           DESCRIPTION\n");
+    append_text("----------------------------------------------------------------------------\n");
 
     while ((entry = readdir(procdir)) != NULL) {
         if (is_number(entry->d_name)) {
             int pid = atoi(entry->d_name);
             get_process_info(pid, &proc);
 
-            snprintf(line, sizeof(line), "%-8d %-15s %-20s %c\n",
-                     proc.pid, proc.user, proc.name, proc.state);
+            snprintf(line, sizeof(line), "%-8d %-15s %-20s %-15s %c\n",
+                     proc.pid, proc.user, proc.name, proc.state_desc, proc.state);
             append_text(line);
         }
     }
@@ -186,7 +200,21 @@ void list_processes_by_user_callback(GtkWidget *widget, gpointer data) {
 
         if (!found) {
             users = (char **)realloc(users, (user_count + 1) * sizeof(char *));
+            if (!users) {
+                append_text("Memory allocation failed\n");
+                free(processes);
+                return;
+            }
             users[user_count] = strdup(processes[i].user);
+            if (!users[user_count]) {
+                append_text("Memory allocation failed\n");
+                free(processes);
+                for (int k = 0; k < user_count; k++) {
+                    free(users[k]);
+                }
+                free(users);
+                return;
+            }
             user_count++;
         }
     }
@@ -197,13 +225,13 @@ void list_processes_by_user_callback(GtkWidget *widget, gpointer data) {
     for (i = 0; i < user_count; i++) {
         snprintf(line, sizeof(line), "[User: %s]\n", users[i]);
         append_text(line);
-        append_text("PID     NAME                STATE\n");
-        append_text("--------------------------------\n");
+        append_text("PID     NAME                STATE           DESCRIPTION\n");
+        append_text("----------------------------------------------------------------\n");
 
         for (int j = 0; j < proc_count; j++) {
             if (strcmp(processes[j].user, users[i]) == 0) {
-                snprintf(line, sizeof(line), "%-8d %-20s %c\n",
-                         processes[j].pid, processes[j].name, processes[j].state);
+                snprintf(line, sizeof(line), "%-8d %-20s %-15s %c\n",
+                         processes[j].pid, processes[j].name, processes[j].state_desc, processes[j].state);
                 append_text(line);
             }
         }

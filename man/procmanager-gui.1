@@ -1,0 +1,98 @@
+.TH PROCESS_MANAGER_GUI 1 "April 2024" "Version 1.0" "User Commands"
+.SH NAME
+procmanager-gui \- graphical system process monitoring and management utility
+.SH SYNOPSIS
+.B procmanager-gui
+.SH DESCRIPTION
+.B procmanager-gui
+provides a GTK-based graphical interface for monitoring and managing system processes on Linux systems.
+.SH FEATURES
+.TP
+.B List All Processes
+Displays a list of all running processes with their PID, user, name, state description, and state.
+.TP
+.B Group By User
+Groups processes by their owners and displays them in organized sections.
+.TP
+.B Show All PIDs
+Lists all process IDs currently active in the system.
+.TP
+.B Run Process
+Allows executing a new command or application through an input field.
+.TP
+.B Send Signal
+Enables sending signals to processes by specifying a PID and selecting a signal type from a dropdown menu.
+.SH INTERFACE
+The interface consists of:
+.TP
+.B Button Panel
+Contains action buttons for listing processes, grouping by user, and showing PIDs.
+.TP
+.B Text View
+Displays the results of operations in a scrollable window.
+.TP
+.B Run Process Panel
+Contains an input field for entering commands and a Run button.
+.TP
+.B Send Signal Panel
+Contains a PID input field, a signal selection dropdown, and a Send button.
+.SH PROCESS STATES
+Process states shown in the output:
+.TP
+.B R
+Running or runnable (on run queue)
+.TP
+.B S
+Interruptible sleep (waiting for an event)
+.TP
+.B D
+Uninterruptible sleep (usually IO)
+.TP
+.B Z
+Defunct or "zombie" process
+.TP
+.B T
+Stopped, either by a job control signal or because it's being traced
+.SH SIGNALS
+Available signals that can be sent to processes:
+.TP
+.B SIGTERM (15)
+Termination request, allowing cleanup operations.
+.TP
+.B SIGKILL (9)
+Immediate termination without cleanup.
+.TP
+.B SIGSTOP (19)
+Suspend execution until a SIGCONT is sent.
+.TP
+.B SIGCONT (18)
+Resume a previously stopped process.
+.TP
+.B SIGHUP (1)
+Hangup, often used to reload configurations.
+.TP
+.B SIGUSR1 (10)
+User-defined signal 1.
+.TP
+.B SIGUSR2 (12)
+User-defined signal 2.
+.SH FILES
+.TP
+.I /proc/*
+The application reads process information from the proc filesystem.
+.SH EXAMPLES
+.PP
+To start the GUI version:
+.PP
+.B procmanager-gui
+.SH NOTES
+Some operations may require root privileges, especially when managing processes owned by other users.
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Adham Zineldin <Mohalya3@gmail.com>
+.SH SEE ALSO
+.BR procmanager (1),
+.BR ps (1),
+.BR top (1),
+.BR kill (1) 

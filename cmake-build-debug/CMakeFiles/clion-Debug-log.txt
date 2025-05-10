@@ -1,4 +1,13 @@
 /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S "/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager" -B "/mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug"
+-- The C compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+-- Checking for module 'gtk+-3.0'
+--   Found gtk+-3.0, version 3.24.33
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /mnt/g/University/Second Year Term 2/Operating Systems 1/Practical/Task/process-manager/cmake-build-debug
